@@ -25,6 +25,6 @@ if __name__ == "__main__":
 
     #world.show_all()
 
-    world.show_potential()
-    #world.show_wires_voltage()
+    #world.show_potential()
+    world.show_wires_voltage()
     
