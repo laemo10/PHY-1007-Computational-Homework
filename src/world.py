@@ -132,12 +132,12 @@ class World:
         """
 
         nb = LaplaceEquationSolver(nb_relaxation_iterations)
-        self._potential = nb.solve(self._wires_voltage)
+        self._potential = ScalarField(nb.solve(self._wires_voltage))
 
         if not self.wires:
             raise ValueError("Place at least one wire before computing the circuits' fields.")
         else:
-            return 
+            return self._potential
 
     def show_wires_voltage(self):
         """

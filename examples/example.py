@@ -21,10 +21,10 @@ if __name__ == "__main__":
 
     world.place(circuit)
 
-    world.compute()
+    world.compute(100)
 
     #world.show_all()
 
-    #world.show_potential()
+    world.show_potential()
     world.show_wires_voltage()
     
