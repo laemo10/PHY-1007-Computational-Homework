@@ -49,21 +49,21 @@ class LaplaceEquationSolver:
                     if x == 0 and y == 0:
                         np_field_end[x,y] = (np_field_end[x+1,y]+np_field_end[x,y+1])/2
 
-                    if x == (np_field_end.shape[0]-1) and y == (np_field_end.shape[1]-1):
+                    elif x == (np_field_end.shape[0]-1) and y == (np_field_end.shape[1]-1):
                         np_field_end[x,y] = (np_field_end[x-1,y]+np_field_end[x,y-1])/2
 
-                    if x == 0:
+                    elif x == 0 and y != 0:
                         np_field_end[x,y] = (np_field_end[x+1,y]+np_field_end[x,y+1]+np_field_end[x,y-1])/3
 
-                    if x == (np_field_end.shape[0]-1):
+                    elif x == (np_field_end.shape[0]-1) and y != (np_field_end.shape[1]-1):
                         np_field_end[x,y] = (np_field_end[x-1,y]+np_field_end[x,y+1]+np_field_end[x,y-1])/3
 
-                    if y == 0:
+                    elif y == 0 and x != 0 :
                         np_field_end[x,y] = (np_field_end[x+1,y]+np_field_end[x-1,y]+np_field_end[x,y+1])/3
 
-                    if y == (np_field_end.shape[1]-1): 
+                    elif y == (np_field_end.shape[1]-1) and x != (np_field_end.shape[0]-1): 
                         np_field_end[x,y] = (np_field_end[x+1,y]+np_field_end[x-1,y]+np_field_end[x,y-1])/3
-                        
+
                     else:
                         np_field_end[x,y] = (np_field_end[x+1,y]+np_field_end[x-1,y]+np_field_end[x,y+1]+np_field_end[x,y-1])/4
 
