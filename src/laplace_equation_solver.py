@@ -40,16 +40,36 @@ class LaplaceEquationSolver:
         """
 
         # voltage flux  
-        np_field_end = constant_voltage
+        np_field_end = np.array(constant_voltage)
         mask = constant_voltage > 0
 
         for i in range(self.nb_iterations):
-            for y in range(np_field_end.shape[1])[1:-1]:
-                for x in range(np_field_end.shape[0])[1:-1]:
-                    np_field_end[x,y] = (np_field_end[x+1,y]+np_field_end[x-1,y]+np_field_end[x,y+1]+np_field_end[x,y-1])/4
+            for y in range(np_field_end.shape[1]):
+                for x in range(np_field_end.shape[0]):
+                    if x == 0 and y == 0:
+                        np_field_end[x,y] = (np_field_end[x+1,y]+np_field_end[x,y+1])/2
+
+                    if x == (np_field_end.shape[0]-1) and y == (np_field_end.shape[1]-1):
+                        np_field_end[x,y] = (np_field_end[x-1,y]+np_field_end[x,y-1])/2
+
+                    if x == 0:
+                        np_field_end[x,y] = (np_field_end[x+1,y]+np_field_end[x,y+1]+np_field_end[x,y-1])/3
+
+                    if x == (np_field_end.shape[0]-1):
+                        np_field_end[x,y] = (np_field_end[x-1,y]+np_field_end[x,y+1]+np_field_end[x,y-1])/3
+
+                    if y == 0:
+                        np_field_end[x,y] = (np_field_end[x+1,y]+np_field_end[x-1,y]+np_field_end[x,y+1])/3
+
+                    if y == (np_field_end.shape[1]-1): 
+                        np_field_end[x,y] = (np_field_end[x+1,y]+np_field_end[x-1,y]+np_field_end[x,y-1])/3
+                        
+                    else:
+                        np_field_end[x,y] = (np_field_end[x+1,y]+np_field_end[x-1,y]+np_field_end[x,y+1]+np_field_end[x,y-1])/4
+
                     if mask[x,y] == True:
                         np_field_end[x,y] = constant_voltage[x,y]
-                             
+        
         return(np_field_end)
 
 
