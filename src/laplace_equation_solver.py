@@ -48,5 +48,8 @@ class LaplaceEquationSolver:
                 for x in range(np_field_end.shape[0])[1:-1]:
                     np_field_end[x,y] = (np_field_end[x+1,y]+np_field_end[x-1,y]+np_field_end[x,y+1]+np_field_end[x,y-1])/4
                     if mask[x,y] == True:
-                        np_field_end[x,y] = constant_voltage[x,y]         
+                        np_field_end[x,y] = constant_voltage[x,y]
+                             
         return(np_field_end)
+
+

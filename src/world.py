@@ -130,14 +130,14 @@ class World:
         nb_relaxation_iterations : int
             Number of iterations performed to obtain the potential by the relaxation method (default = 1000)
         """
+
         nb = LaplaceEquationSolver(nb_relaxation_iterations)
-        np_potentiel = self._wires_voltage
-        self._potential = nb.solve(np_potentiel)
+        self._potential = nb.solve(self._wires_voltage)
 
         if not self.wires:
             raise ValueError("Place at least one wire before computing the circuits' fields.")
         else:
-            return self._potential
+            return 
 
     def show_wires_voltage(self):
         """
