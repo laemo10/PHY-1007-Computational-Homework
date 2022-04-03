@@ -46,11 +46,18 @@ class LaplaceEquationSolver:
         for i in range(self.nb_iterations):
             for y in range(np_field_end.shape[1]):
                 for x in range(np_field_end.shape[0]):
+                    
                     if x == 0 and y == 0:
                         np_field_end[x,y] = (np_field_end[x+1,y]+np_field_end[x,y+1])/2
 
                     elif x == (np_field_end.shape[0]-1) and y == (np_field_end.shape[1]-1):
                         np_field_end[x,y] = (np_field_end[x-1,y]+np_field_end[x,y-1])/2
+                        
+                    elif x == 0 and y == (np_field_end.shape[1]-1):
+                        np_field_end[x,y] = (np_field_end[x+1,y]+np_field_end[x,y-1])/2
+
+                    elif x == (np_field_end.shape[0]-1) and y == 0:
+                        np_field_end[x,y] = (np_field_end[x-1,y]+np_field_end[x,y+1])/2
 
                     elif x == 0 and y != 0:
                         np_field_end[x,y] = (np_field_end[x+1,y]+np_field_end[x,y+1]+np_field_end[x,y-1])/3
