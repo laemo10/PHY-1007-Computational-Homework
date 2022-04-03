@@ -112,6 +112,7 @@ class World:
         an_object : Union[Circuit, Wire]
             An object.
         """
+
         if isinstance(an_object, Wire):
             self._place_wire(an_object)
         elif isinstance(an_object, Circuit):
@@ -129,6 +130,15 @@ class World:
         nb_relaxation_iterations : int
             Number of iterations performed to obtain the potential by the relaxation method (default = 1000)
         """
+
+        # voltage flux  
+        np_voltage = self._wires_voltage
+        for y in range(np_voltage.shape()[1]):
+            for x in range(np_voltage.shape()[0]):
+                np_voltage[x,y] = 
+
+
+
         if not self.wires:
             raise ValueError("Place at least one wire before computing the circuits' fields.")
         else:
